@@ -27,7 +27,7 @@ git clone https://github.com/AntoineA67/choupi-tester/
 <!-- GETTING STARTED -->
 ## How to use
 
-- EZ
+- compile your push_swap program then:
 ```sh
 python3 choupi-tester/choupi-tester.py
 ```
