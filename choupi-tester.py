@@ -6,7 +6,7 @@
 #    By: arangoni <arangoni@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 14:52:12 by arangoni          #+#    #+#              #
-#    Updated: 2021/12/12 20:03:03 by arangoni         ###   ########.fr        #
+#    Updated: 2021/12/12 20:33:01 by arangoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -175,41 +175,49 @@ def main():
 		ax.plot(l, list(map(avg, tab)))
 
 		color_map = [0] * len(l)
+		map_limit = ListedColormap(
+			colors=['#00000000', '#F94144ff', '#F3722Cff', '#F9C74Fff', '#90BE6Dff', '#43AA8Bff', '#577590ff'],
+			name='map_limit',
+			N=7
+		)
 		for i, n in enumerate(maxi_list):
+			#print(i + START, n)
 			if i + START <= 3:
 				if n <= 3:
 					color_map[i] = 5
-			elif i + START <= 5:
+			elif i + START == 5:
 				if n <= 12:
 					color_map[i] = 5
-			elif i + START <= 100:
+				else:
+					color_map[i] = 1
+			elif i + START == 100:
 				if n <= 700:
-					color_map[i] = 5
+					color_map[i] = 6
 				elif n <= 900:
-					color_map[i] = 4
-				elif n <= 1100:
-					color_map[i] = 3
-				elif n <= 1300:
-					color_map[i] = 2
-				elif n <= 1500:
-					color_map[i] = 1
-			elif i + START <= 500:
-				if n <= 5500:
 					color_map[i] = 5
-				elif n <= 7000:
+				elif n <= 1100:
 					color_map[i] = 4
-				elif n <= 8500:
+				elif n <= 1300:
 					color_map[i] = 3
-				elif n <= 1000:
+				elif n <= 1500:
 					color_map[i] = 2
-				elif n <= 11500:
+				else:
 					color_map[i] = 1
-		map_limit = ListedColormap(
-			colors=['#F94144', '#F3722C', '#F9C74F', '#90BE6D', '#43AA8B', '#577590'],
-			name='map_limit',
-			N=6
-		)
-
+			elif i + START == 500:
+				if n <= 5500:
+					color_map[i] = 6
+				elif n <= 7000:
+					color_map[i] = 5
+				elif n <= 8500:
+					color_map[i] = 4
+				elif n <= 1000:
+					color_map[i] = 3
+				elif n <= 11500:
+					color_map[i] = 2
+				else:
+					color_map[i] = 1
+		
+		#print(color_map)
 		ax.scatter(l, maxi_list, c=color_map, cmap=map_limit)
 		ax.autoscale(False)
 		if args.rectangle:
