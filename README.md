@@ -33,6 +33,12 @@ python3 choupi-tester/choupi-tester.py
 ```
 ![Screenshot use][use]
 
+- Minimal use, only tests 1, 3, 5, 100, 500
+ ```sh
+  python3 choupi-tester/choupi-tester.py -m
+  ```
+  
+
 - Help
   ```sh
   python3 choupi-tester/choupi-tester.py -h
