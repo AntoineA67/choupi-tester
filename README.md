@@ -37,6 +37,8 @@ python3 choupi-tester/choupi-tester.py
  ```sh
   python3 choupi-tester/choupi-tester.py -m
   ```
+  ![Screenshot minimal][minimal]
+
   
 
 - Help
@@ -61,3 +63,4 @@ python3 choupi-tester/choupi-tester.py
 [a3]: screenshots/a3.png
 [a300]: screenshots/a300.png
 [use]: screenshots/use.png
+[minimal]: screenshots/mini.png
