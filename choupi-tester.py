@@ -6,7 +6,7 @@
 #    By: arangoni <arangoni@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 14:52:12 by arangoni          #+#    #+#              #
-#    Updated: 2021/12/12 18:00:13 by arangoni         ###   ########.fr        #
+#    Updated: 2021/12/12 18:30:06 by arangoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,10 @@ from matplotlib.lines import Line2D
 from matplotlib.collections import PatchCollection
 from matplotlib.patches import Rectangle
 from ctypes import *
-import requests
+# import requests
 
-response = requests.get("https://api.github.com/")
-print(response.json()["name"])
+# response = requests.get("https://api.github.com/")
+# print(response.json()["name"])
 
 
 CEND      = '\33[0m'
@@ -67,7 +67,7 @@ def avg(lst):
 	return sum(lst) / len(lst)
 
 def doArgs(argList):
-	parser = argparse.ArgumentParser(description="push_swap tester and plotter")
+	parser = argparse.ArgumentParser(description="push_swap tester")
 	parser.add_argument('integers', metavar='START END | END', type=int, help="start and end range", nargs='*', default=[0, 50])
 	parser.add_argument('-v', "--verbose", action="store", dest="verbose", type=int, help="verbose - possible values: 0, 1, 2 - default 1", default=1)
 	parser.add_argument('-a', "--average", action="store", dest="avg", type=int, help="number of tests to average from - default 10", default=10)
