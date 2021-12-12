@@ -31,9 +31,7 @@ git clone https://github.com/AntoineA67/choupi-tester/
 ```sh
 python3 choupi-tester/choupi-tester.py
 ```
-
-
-### Usage
+![Screenshot use][use]
 
 - Help
   ```sh
@@ -56,3 +54,4 @@ python3 choupi-tester/choupi-tester.py
 [screenshot_20-100]: screenshots/20-100.png
 [a3]: screenshots/a3.png
 [a300]: screenshots/a300.png
+[use]: screenshots/use.png
