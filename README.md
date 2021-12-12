@@ -31,7 +31,7 @@ git clone https://github.com/AntoineA67/choupi-tester/
 ```sh
 python3 choupi-tester/choupi-tester.py
 ```
-[screenshot]
+[![Product Name Screen Shot][screenshot]]
 
 ### Options
 
