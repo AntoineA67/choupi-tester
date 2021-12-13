@@ -6,14 +6,15 @@
 #    By: arangoni <arangoni@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 14:52:12 by arangoni          #+#    #+#              #
-#    Updated: 2021/12/12 20:33:01 by arangoni         ###   ########.fr        #
+#    Updated: 2021/12/13 13:26:08 by arangoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import sys,os
 import time
 import argparse
-from matplotlib.colors import ListedColormap
+from matplotlib.cm import ScalarMappable
+from matplotlib.colors import ListedColormap, Normalize
 import numpy as np
 import random
 import subprocess
@@ -174,51 +175,57 @@ def main():
 		ax.fill_between(l, list(map(min, tab)), maxi_list, alpha=.5, linewidth=2)
 		ax.plot(l, list(map(avg, tab)))
 
-		color_map = [0] * len(l)
+		color_map = [5] * len(l)
 		map_limit = ListedColormap(
-			colors=['#00000000', '#F94144ff', '#F3722Cff', '#F9C74Fff', '#90BE6Dff', '#43AA8Bff', '#577590ff'],
+			colors=['#F94144ff', '#F3722Cff', '#F9C74Fff', '#90BE6Dff', '#43AA8Bff', '#577590ff'],
 			name='map_limit',
-			N=7
 		)
+		#print(map_limit.colors)
 		for i, n in enumerate(maxi_list):
 			#print(i + START, n)
 			if i + START <= 3:
 				if n <= 3:
 					color_map[i] = 5
-			elif i + START == 5:
+				else:
+					color_map[i] = 0
+			elif i + START <= 5:
 				if n <= 12:
 					color_map[i] = 5
 				else:
 					color_map[i] = 1
-			elif i + START == 100:
+			elif i + START <= 100:
 				if n <= 700:
-					color_map[i] = 6
+					color_map[i] = 5
 				elif n <= 900:
-					color_map[i] = 5
+					color_map[i] = 4
 				elif n <= 1100:
-					color_map[i] = 4
+					color_map[i] = 3
 				elif n <= 1300:
-					color_map[i] = 3
+					color_map[i] = 2
 				elif n <= 1500:
-					color_map[i] = 2
-				else:
 					color_map[i] = 1
-			elif i + START == 500:
+				else:
+					color_map[i] = 0
+			elif i + START <= 500:
 				if n <= 5500:
-					color_map[i] = 6
-				elif n <= 7000:
 					color_map[i] = 5
-				elif n <= 8500:
+				elif n <= 7000:
 					color_map[i] = 4
-				elif n <= 1000:
+				elif n <= 8500:
 					color_map[i] = 3
-				elif n <= 11500:
+				elif n <= 1000:
 					color_map[i] = 2
-				else:
+				elif n <= 11500:
 					color_map[i] = 1
+				else:
+					color_map[i] = 0
 		
+
+		color_map = [float(i) for i in color_map]
 		#print(color_map)
-		ax.scatter(l, maxi_list, c=color_map, cmap=map_limit)
+		fig.colorbar(ScalarMappable(norm=Normalize(vmin=0, vmax=5), cmap=map_limit), )
+		ax.scatter(l, maxi_list, c=color_map, cmap=map_limit, norm=Normalize(vmin=0, vmax=5), marker='v')
+
 		ax.autoscale(False)
 		if args.rectangle:
 			limits = (((0, 0), 4, 3), ((4, 0), 2, 12), ((6, 0), 95, 1500), ((101, 0), 400, 11500))
