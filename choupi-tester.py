@@ -6,7 +6,7 @@
 #    By: arangoni <arangoni@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 14:52:12 by arangoni          #+#    #+#              #
-#    Updated: 2021/12/13 13:26:08 by arangoni         ###   ########.fr        #
+#    Updated: 2021/12/13 14:09:06 by arangoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,12 @@ def color_range(value, lst):
 		return CYELLOW2 + str(value) + CBEIGE2
 	return CGREEN2 + str(value) + CBEIGE2
 
+def write_log(l, prog):
+	with open("choupi-tester.log", "w") as f:
+		f.writelines(' '.join([str(x) for x in l]))
+		f.write("\n\n")
+		f.writelines(prog)
+
 
 def main():
 	print(CVIOLET + "   ___ _                  _   _____       _           \n  / __| |_  ___ _  _ _ __(_) |_   _|__ __| |_ ___ _ _ \n | (__| ' \/ _ \ || | '_ \ |   | |/ -_|_-<  _/ -_) '_|\n  \___|_||_\___/\_,_| .__/_|   |_|\___/__/\__\___|_|  \n                    |_|                               " + CEND)
@@ -130,7 +136,8 @@ def main():
 				if args.verbose == 2:
 					print(prog.split('\n'))
 				if (subprocess.check_output(["./checker"] + [str(x) for x in l], input=prog, text=True) == 'KO\n'):
-					print(CRED + "KO" + CEND)
+					write_log(l, prog)
+					print(CURL + CBLUE2 + ' ' * 60 + CEND + CBLUE2 + '\n\n' + CBLUE + "List: " + CBEIGE2 + "{}\n\n".format(' '.join([str(x) for x in l])) + CBLUE + "Output: " + CBEIGE2 + "{}\n".format(' '.join(prog.split('\n'))) + CBLUE + "\nList and output written in choupi-tester.log\n\n" + CRED + "KO" + CEND)
 					exit()
 				tab[index].append(len(prog.split('\n')))
 			if args.verbose:
@@ -160,7 +167,8 @@ def main():
 				if args.verbose == 2:
 					print(prog.split('\n'))
 				if args.check and (subprocess.check_output(["./checker"] + [str(x) for x in l], input=prog, text=True) == 'KO\n'):
-					print(CRED + "KO" + CEND)
+					write_log(l, prog)
+					print(CURL + CBLUE2 + ' ' * 60 + CEND + CBLUE2 + '\n\n' + CBLUE + "List: " + CBEIGE2 + "{}\n\n".format(' '.join([str(x) for x in l])) + CBLUE + "Output: " + CBEIGE2 + "{}\n".format(' '.join(prog.split('\n'))) + CBLUE + "\nList and output written in choupi-tester.log\n\n" + CRED + "KO" + CEND)
 					exit()
 				tab[i - START].append(len(prog.split('\n')))
 			if args.verbose:
