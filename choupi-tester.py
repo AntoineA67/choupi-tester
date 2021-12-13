@@ -6,7 +6,7 @@
 #    By: arangoni <arangoni@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 14:52:12 by arangoni          #+#    #+#              #
-#    Updated: 2021/12/13 14:09:06 by arangoni         ###   ########.fr        #
+#    Updated: 2021/12/13 14:25:56 by arangoni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,13 +133,15 @@ def main():
 				if args.verbose == 2:
 					print(l)
 				prog = subprocess.check_output(["./push_swap"] + [str(x) for x in l], text=1)
+				split_prog = prog.split('\n')
 				if args.verbose == 2:
-					print(prog.split('\n'))
+					#print(prog)
+					print(split_prog)
 				if (subprocess.check_output(["./checker"] + [str(x) for x in l], input=prog, text=True) == 'KO\n'):
 					write_log(l, prog)
-					print(CURL + CBLUE2 + ' ' * 60 + CEND + CBLUE2 + '\n\n' + CBLUE + "List: " + CBEIGE2 + "{}\n\n".format(' '.join([str(x) for x in l])) + CBLUE + "Output: " + CBEIGE2 + "{}\n".format(' '.join(prog.split('\n'))) + CBLUE + "\nList and output written in choupi-tester.log\n\n" + CRED + "KO" + CEND)
+					print(CURL + CBLUE2 + ' ' * 60 + CEND + CBLUE2 + '\n\n' + CBLUE + "List: " + CBEIGE2 + "{}\n\n".format(' '.join([str(x) for x in l])) + CBLUE + "Output: " + CBEIGE2 + "{}\n".format(' '.join(split_prog)) + CBLUE + "\nList and output written in choupi-tester.log\n\n" + CRED + "KO" + CEND)
 					exit()
-				tab[index].append(len(prog.split('\n')))
+				tab[index].append(len(split_prog) - 1)
 			if args.verbose:
 				print(CBEIGE2 + "{:^20.1f}{:^20}{:^20}".format(avg(tab[index]), max(tab[index]), i) + CEND)
 	else:
@@ -164,13 +166,15 @@ def main():
 				if args.verbose == 2:
 					print(l)
 				prog = subprocess.check_output(["./push_swap"] + [str(x) for x in l], text=1)
+				split_prog = prog.split('\n')
 				if args.verbose == 2:
-					print(prog.split('\n'))
+					#print(prog)
+					print(split_prog)
 				if args.check and (subprocess.check_output(["./checker"] + [str(x) for x in l], input=prog, text=True) == 'KO\n'):
 					write_log(l, prog)
-					print(CURL + CBLUE2 + ' ' * 60 + CEND + CBLUE2 + '\n\n' + CBLUE + "List: " + CBEIGE2 + "{}\n\n".format(' '.join([str(x) for x in l])) + CBLUE + "Output: " + CBEIGE2 + "{}\n".format(' '.join(prog.split('\n'))) + CBLUE + "\nList and output written in choupi-tester.log\n\n" + CRED + "KO" + CEND)
+					print(CURL + CBLUE2 + ' ' * 60 + CEND + CBLUE2 + '\n\n' + CBLUE + "List: " + CBEIGE2 + "{}\n\n".format(' '.join([str(x) for x in l])) + CBLUE + "Output: " + CBEIGE2 + "{}\n".format(' '.join(split_prog)) + CBLUE + "\nList and output written in choupi-tester.log\n\n" + CRED + "KO" + CEND)
 					exit()
-				tab[i - START].append(len(prog.split('\n')))
+				tab[i - START].append(len(split_prog) - 1)
 			if args.verbose:
 				print(CBEIGE2 + "{:^20.1f}{:^20}{:^20}".format(avg(tab[i - START]), max(tab[i - START]), i) + CEND)
 
